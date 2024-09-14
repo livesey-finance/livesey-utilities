@@ -7,11 +7,17 @@
 ├── package-lock.json
 ├── package.json
 ├── src
+│   ├── isolation
+│   │   ├── binarySemaphore.js
+│   │   ├── countingSemaphore.js
+│   │   └── mutex.js
 │   └── queue
 │       └── queue.js
 ├── structure.md
 └── test
-    └── queue.test.js
+    ├── isolation
+    └── queue
+        └── queue.test.js
 
-4 directories, 9 files
+7 directories, 12 files
 ```
