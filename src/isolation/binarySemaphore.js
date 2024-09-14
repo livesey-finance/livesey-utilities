@@ -1,22 +1,27 @@
+// Implementation
+const LOCKED = 1;
+const UNLOCKED = 0;
+
 export class BinarySemaphore {
-  constructor(shared, offset = 0, initialValue = 0) {
-    this.count = new Int32Array(shared, offset, 1);
-    if (typeof initialValue === 'number') Atomics.store(this.counter, 0, initial);
+  constructor(shared, offset = 0, init = false) {
+    this.lock = new Int32Array(shared, offset, 1);
+    if (init) Atomics.store(this.lock, 0, UNLOCKED);
   }
 
   enterCriticalSection() {
-    while (true) {
-      Atomics.wait(this.count, 0, 0);
-      const current = Atomics.load(this.count, 0);
-      if (current > 0) {
-        const prev = Atomics.compareExchange(this.count, 0, current, current - 1);
-        if (prev === current) return;
-      }
+    let prev = Atomics.exchange(this.lock, 0, LOCKED);
+    while (prev !== UNLOCKED) {
+      Atomics.wait(this.lock, 0, LOCKED);
+      prev = Atomics.exchange(this.lock, 0, LOCKED);
     }
   }
 
   leaveCriticalSection() {
-    Atomics.add(this.count, 0, 1);
-    Atomics.notify(this.count, 0, 1);
+    if (Atomics.load(this.lock, 0) === UNLOCKED) {
+      throw new Error('Cannot leave unlocked BinarySemaphore');
+    }
+    Atomics.store(this.lock, 0, UNLOCKED);
+    Atomics.notify(this.lock, 0, 1);
   }
 }
+
