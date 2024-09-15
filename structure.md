@@ -10,14 +10,17 @@
 │   ├── isolation
 │   │   ├── binarySemaphore.js
 │   │   ├── countingSemaphore.js
+│   │   ├── index.js
 │   │   └── mutex.js
 │   └── queue
-│       └── queue.js
+│       ├── asyncQueue.js
+│       └── index.js
 ├── structure.md
 └── test
     ├── isolation
+    │   └── mutex.test.js
     └── queue
         └── queue.test.js
 
-7 directories, 12 files
+7 directories, 15 files
 ```
