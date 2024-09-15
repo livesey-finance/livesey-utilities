@@ -11,7 +11,7 @@ export class AsyncQueue {
   }
 
   static channels(concurrency) {
-    return new Queue(concurrency);
+    return new AsyncQueue(concurrency);
   }
 
   wait(waitTimeout) {

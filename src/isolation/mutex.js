@@ -1,4 +1,4 @@
-import { threadId, Worker } from 'worker_threads';
+import { threadId, Worker } from 'node:worker_threads';
 
 const LOCKED = 1;
 const UNLOCKED = 0;

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "npx eslint . --fix && node index.js",
-    "test": "node --test tests/*.test.js"
+    "test": "tap run"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,8 @@
   "author": "Heorhii Huziuk",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^9.10.0"
+    "eslint": "^9.10.0",
+    "tap": "^21.0.1"
   },
   "keywords": [
     "utilities",

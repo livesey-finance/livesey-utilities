@@ -2,20 +2,20 @@ import * as threads from 'node:worker_threads';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import tap from 'tap';
-import { Mutex } from '../../src/isolation/mutex.js';
+import { CountingSemaphore } from '../../src/isolation/countingSemaphore.js';
 
 const { Worker, isMainThread, threadId, workerData, parentPort } = threads;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-tap.test('Mutex test with workers', (t) => {
+tap.test('CountingSemaphore test with workers', (t) => {
   if (isMainThread) {
     const buffer = new SharedArrayBuffer(14);
-    const mutex = new Mutex(null, buffer, 0);
+    const semaphore = new CountingSemaphore(buffer, 0, 2);
 
-    t.ok(mutex, 'Mutex should be initialized');
-    t.same(mutex.lock, new Int8Array(buffer, 0, 1), 'Mutex lock should be initialized correctly');
+    t.ok(semaphore, 'CountingSemaphore should be initialized');
+    t.same(semaphore.count, new Int32Array(buffer, 0, 1), 'CountingSemaphore count should be initialized correctly');
 
     const results = [];
     let worker1Completed = false;
@@ -87,20 +87,20 @@ tap.test('Mutex test with workers', (t) => {
       }
     }
   } else {
-    const mutex = new Mutex(threads, workerData, 0);
+    const semaphore = new CountingSemaphore(workerData, 0, 2); // Той самий семафор, що використовує потоки
     const array = new Int8Array(workerData, 4);
     const value = threadId === 1 ? 1 : -1;
 
-    mutex.enterCriticalSection();
+    semaphore.enterCriticalSection();
     try {
       for (let i = 0; i < array.length; i++) {
         array[i] += value;
       }
-      const result = [threadId, mutex.lock[0], Array.from(array)];
+      const result = [threadId, semaphore.count[0], Array.from(array)];
       console.log(`Worker ${threadId} sending result:`, result);
       parentPort.postMessage(result);
     } finally {
-      mutex.leaveCriticalSection();
+      semaphore.leaveCriticalSection();
     }
 
     parentPort.close();

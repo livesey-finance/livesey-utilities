@@ -1,7 +1,7 @@
 export class CountingSemaphore {
   constructor(shared, offset = 0, initialValue = 0) {
     this.count = new Int32Array(shared, offset, 1);
-    if (typeof initialValue === 'number') Atomics.store(this.counter, 0, initial);
+    if (typeof initialValue === 'number') Atomics.store(this.count, 0, initialValue);
   }
 
   enterCriticalSection() {
