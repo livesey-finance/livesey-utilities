@@ -1,4 +1,4 @@
-export class Queue {
+export class AsyncQueue {
   constructor(concurrency) {
     this.concurrency = concurrency;
     this.count = 0;
