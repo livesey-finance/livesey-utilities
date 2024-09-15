@@ -1,7 +1,7 @@
 {
   "name": "livesey-utilities",
   "version": "1.0.0",
-  "description": "",
+  "description": "A collection of utility functions for JavaScript projects, designed to simplify common tasks and improve code quality.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,11 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "hhuziuk"
+    "url": "https://github.com/hhuziuk/livesey-utilities"
   },
   "author": "Heorhii Huziuk",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^9.10.0"
-  }
+  },
+  "keywords": [
+    "utilities",
+    "javascript",
+    "helper-functions",
+    "nodejs",
+    "eslint",
+    "module",
+    "livesey"
+  ]
 }
