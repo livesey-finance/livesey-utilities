@@ -131,3 +131,5 @@ dist
 
 # MacOS Data
 **/.DS_Store
+
+/.tap
