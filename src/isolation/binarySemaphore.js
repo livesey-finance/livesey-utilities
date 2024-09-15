@@ -1,11 +1,10 @@
-// Implementation
 const LOCKED = 1;
 const UNLOCKED = 0;
 
 export class BinarySemaphore {
-  constructor(shared, offset = 0, init = false) {
+  constructor(shared, offset = 0) {
     this.lock = new Int32Array(shared, offset, 1);
-    if (init) Atomics.store(this.lock, 0, UNLOCKED);
+    Atomics.store(this.lock, 0, UNLOCKED);
   }
 
   enterCriticalSection() {
