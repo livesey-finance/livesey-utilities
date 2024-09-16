@@ -30,7 +30,7 @@
 npm install livesey-utilities
 ```
 
-You can install the module via [npm]("")
+You can install the module via [npm]("https://www.npmjs.com/package/livesey-utilities")
 
 ---
 
