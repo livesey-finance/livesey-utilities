@@ -18,9 +18,11 @@
 ├── structure.md
 └── test
     ├── isolation
+    │   ├── binarySemaphore.test.js
+    │   ├── countingSemaphoreю.test.js
     │   └── mutex.test.js
     └── queue
         └── queue.test.js
 
-7 directories, 15 files
+7 directories, 17 files
 ```

@@ -4,7 +4,7 @@ const LOCKED = 1;
 const UNLOCKED = 0;
 
 export class Mutex {
-  constructor(worker, shared, offset = 0) {
+  constructor(worker, shared, offset) {
     if (worker instanceof Worker) this.creator = worker.threadId;
     this.owner = null;
     this.lock = new Int32Array(shared, offset, 1);

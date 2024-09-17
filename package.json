@@ -1,6 +1,6 @@
 {
   "name": "livesey-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of utility functions for JavaScript projects, designed to simplify common tasks and improve code quality.",
   "main": "index.js",
   "type": "module",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hhuziuk/livesey-utilities"
+    "url": "https://github.com/livesey-finance/livesey-utilities.git"
   },
   "author": "Heorhii Huziuk",
   "license": "MIT",
